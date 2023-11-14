@@ -23,8 +23,11 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCount = 0; 
     private bool isDead = false;
     [SerializeField] private float horizontalHitBoxFixer = .05f; 
+    public AudioSource jumpSound;
+    public AudioSource doubleJumpSound;
 
-    private enum MovementState { idle, walking, jumping, falling }
+
+    private enum MovementState { idle, walking, jumping, falling, doubleJumping }
 
     private void Start()
     {
@@ -43,6 +46,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
+            if (jumpCount > extraJumpQuantity-1)
+            {
+                jumpSound.Play();
+            }
+            else
+            {
+                doubleJumpSound.Play();
+            }
             isInJumpInteval = false;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x,jumpHeight);
             jumpCount -= 1;
@@ -92,7 +103,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (rigidbody.velocity.y > .1f)
         {
-            state = MovementState.jumping;
+            if (jumpCount > 0)
+            {
+                state = MovementState.jumping;
+            }
+            else
+            {
+                state = MovementState.doubleJumping;
+            }
         }
         else if (rigidbody.velocity.y < -.1f)
         {

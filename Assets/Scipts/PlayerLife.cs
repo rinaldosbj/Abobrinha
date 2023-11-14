@@ -8,6 +8,7 @@ public class PlayerLife : MonoBehaviour
 {
     private Animator animator;
     new private Rigidbody2D rigidbody;
+    public AudioSource deadSound;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerLife : MonoBehaviour
 
     public void Die()
     {
+        deadSound.Play();
         animator.SetTrigger("death");
         rigidbody.bodyType = RigidbodyType2D.Static;
         int oldScore = PlayerPrefs.GetInt("OldScore");

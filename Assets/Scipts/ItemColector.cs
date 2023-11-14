@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ItemColector : MonoBehaviour
 {
     public  Text candyText;
-
+    public AudioSource pickUpSound;
     private int score;
 
     private void Start() 
@@ -21,6 +21,7 @@ public class ItemColector : MonoBehaviour
         {
             Destroy(other.gameObject);
             score++;
+            pickUpSound.Play();
             PlayerPrefs.SetInt("Score", score);
             candyText.text = score.ToString();
         }
