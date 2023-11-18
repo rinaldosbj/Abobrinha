@@ -5,12 +5,17 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform player;
+    public float minYposition = 0;
     public float maxYposition = 0;
 
     private void Update()
     {
         float positionY = player.position.y;
-        if (positionY < maxYposition)
+        if (positionY < minYposition)
+        {
+            positionY = minYposition;
+        }
+        else if (positionY > maxYposition)
         {
             positionY = maxYposition;
         }

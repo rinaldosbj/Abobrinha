@@ -25,9 +25,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float horizontalHitBoxFixer = .05f; 
     public AudioSource jumpSound;
     public AudioSource doubleJumpSound;
+    private bool estaAbaixado = false;
+    public float gravityScale = 3f;
 
 
-    private enum MovementState { idle, walking, jumping, falling, doubleJumping }
+    private enum MovementState { idle, walking, jumping, falling, doubleJumping, abaixado}
 
     private void Start()
     {
@@ -41,8 +43,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        float directionX = Input.GetAxisRaw("Horizontal");
-        rigidbody.velocity = new Vector2(playerSpeed*directionX,rigidbody.velocity.y);
+        if (Input.GetButton("Down"))
+        {
+            estaAbaixado = true;
+            rigidbody.gravityScale = gravityScale * 1.25f;
+            float directionX = Input.GetAxisRaw("Horizontal");
+            rigidbody.velocity = new Vector2((playerSpeed*directionX)/6,rigidbody.velocity.y);
+        }
+        else
+        {
+            rigidbody.gravityScale = gravityScale;
+            estaAbaixado = false;
+            float directionX = Input.GetAxisRaw("Horizontal");
+            rigidbody.velocity = new Vector2(playerSpeed*directionX,rigidbody.velocity.y);
+        }
 
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
@@ -115,6 +129,11 @@ public class PlayerMovement : MonoBehaviour
         else if (rigidbody.velocity.y < -.1f)
         {
             state = MovementState.falling;
+        }
+
+        if (estaAbaixado)
+        {
+            state = MovementState.abaixado;
         }
 
         animator.SetInteger("state", (int)state);

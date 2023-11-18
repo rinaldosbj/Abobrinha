@@ -806,7 +806,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 681665794}
-  maxYposition: 0
+  minYposition: 0
+  maxYposition: 4
 --- !u!4 &544930654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7788264025505015439, guid: ba5cf5e0bcde94549b081069d9dfaade, type: 3}
