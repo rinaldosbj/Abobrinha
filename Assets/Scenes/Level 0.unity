@@ -757,7 +757,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 681665794}
-  maxYposition: 0
+  minYposition: 0
+  maxYposition: 4.5
 --- !u!1001 &532540291
 PrefabInstance:
   m_ObjectHideFlags: 0
