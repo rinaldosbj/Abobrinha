@@ -27,13 +27,20 @@ public class EnemyAINotFall : MonoBehaviour
     {
         if (canChangeDirection)
         {
-            if (!Physics2D.BoxCast(collider2D2.bounds.center, collider2D2.bounds.size, 0f, Vector2.down, 0f, ground))
+            bool rightIsOnTheGround = Physics2D.BoxCast(collider2D2.bounds.center, collider2D2.bounds.size, 0f, Vector2.down, 0f, ground);
+            bool leftIsOnTheGround = Physics2D.BoxCast(collider2D1.bounds.center, collider2D1.bounds.size, 0f, Vector2.down, 0f, ground);
+            
+            if( (rightIsOnTheGround && leftIsOnTheGround ) || (!rightIsOnTheGround && !leftIsOnTheGround))
+            {
+                // Do nothing
+            }
+            else if (!rightIsOnTheGround)
             {
                 isGoingRight = false;
                 canChangeDirection = false;
                 spriteRenderer.flipX = true;
             }
-            if (!Physics2D.BoxCast(collider2D1.bounds.center, collider2D1.bounds.size, 0f, Vector2.down, 0f, ground))
+            else if (!leftIsOnTheGround)
             {
                 isGoingRight = true;
                 canChangeDirection = false;
@@ -53,6 +60,11 @@ public class EnemyAINotFall : MonoBehaviour
             }
         }
 
+        Move();
+    }
+
+    private void Move()
+    {
         if (isGoingRight)
         {
             rigidbody.velocity = new Vector2(velocity,rigidbody.velocity.y);
@@ -61,5 +73,5 @@ public class EnemyAINotFall : MonoBehaviour
         {
             rigidbody.velocity = new Vector2(-velocity,rigidbody.velocity.y);
         }
-    }
+    } 
 }

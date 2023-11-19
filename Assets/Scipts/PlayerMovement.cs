@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravityScale = 3f;
 
 
-    private enum MovementState { idle, walking, jumping, falling, doubleJumping, abaixado}
+    private enum MovementState { idle, walking, jumping, falling, doubleJumping, abaixado, abaixado_down}
 
     private void Start()
     {
@@ -130,10 +130,17 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.falling;
         }
-
+        
         if (estaAbaixado)
         {
-            state = MovementState.abaixado;
+            if (rigidbody.velocity.y > -.01f && rigidbody.velocity.y < .01f)
+            {
+                state = MovementState.abaixado_down;
+            }
+            else
+            {
+                state = MovementState.abaixado;
+            }
         }
 
         animator.SetInteger("state", (int)state);
