@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ItemColector : MonoBehaviour
 {
     public  Text candyText;
+    public  Text lifesText;
     public AudioSource pickUpSound;
     private int score;
 
@@ -24,6 +25,15 @@ public class ItemColector : MonoBehaviour
             pickUpSound.Play();
             PlayerPrefs.SetInt("Score", score);
             candyText.text = score.ToString();
+        }
+
+        if (other.gameObject.CompareTag("Life"))
+        {
+            other.gameObject.SetActive(false);
+            pickUpSound.Play();
+            int lifes = PlayerPrefs.GetInt("Life");
+            PlayerPrefs.SetInt("Life", lifes+1);;
+            lifesText.text = ($"{lifes+1}x");
         }
     }
 }

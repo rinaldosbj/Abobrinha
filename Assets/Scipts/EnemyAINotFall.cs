@@ -11,7 +11,7 @@ public class EnemyAINotFall : MonoBehaviour
     public LayerMask ground;
     private bool isGoingRight = true;
     public float velocity = 0.5f;
-    private Rigidbody2D rigidbody;
+    new private Rigidbody2D rigidbody;
     private SpriteRenderer spriteRenderer;
 
     private bool canChangeDirection = true;

@@ -4,12 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
     private Animator animator;
     new private Rigidbody2D rigidbody;
     public AudioSource deadSound;
+    public  Text lifesText;
+    private int lifes;
 
     private float savedVelocity = 0;
 
@@ -17,6 +20,8 @@ public class PlayerLife : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
+        lifes = PlayerPrefs.GetInt("Life");
+        lifesText.text = ($"{lifes}x");
     }
 
     private void Update() 
@@ -43,10 +48,19 @@ public class PlayerLife : MonoBehaviour
         rigidbody.bodyType = RigidbodyType2D.Static;
         int oldScore = PlayerPrefs.GetInt("OldScore");
         PlayerPrefs.SetInt("Score", oldScore);
+        lifes = PlayerPrefs.GetInt("Life");
+        PlayerPrefs.SetInt("Life", lifes-1);
     }
 
     private void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (lifes-1 == 0)
+        {
+            SceneManager.LoadScene("Game Over");
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
