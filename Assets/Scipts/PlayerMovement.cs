@@ -48,14 +48,20 @@ public class PlayerMovement : MonoBehaviour
             estaAbaixado = true;
             rigidbody.gravityScale = gravityScale * 1.25f;
             float directionX = Input.GetAxisRaw("Horizontal");
-            rigidbody.velocity = new Vector2((playerSpeed*directionX)/6,rigidbody.velocity.y);
+            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+            {
+                rigidbody.velocity = new Vector2((playerSpeed*directionX)/6,rigidbody.velocity.y);
+            }
         }
         else
         {
             rigidbody.gravityScale = gravityScale;
             estaAbaixado = false;
             float directionX = Input.GetAxisRaw("Horizontal");
-            rigidbody.velocity = new Vector2(playerSpeed*directionX,rigidbody.velocity.y);
+            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+            {
+                rigidbody.velocity = new Vector2(playerSpeed*directionX,rigidbody.velocity.y);
+            }
         }
 
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
@@ -69,7 +75,10 @@ public class PlayerMovement : MonoBehaviour
                 doubleJumpSound.Play();
             }
             isInJumpInteval = false;
+            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+            {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x,jumpHeight);
+            }
             jumpCount -= 1;
         }
         else

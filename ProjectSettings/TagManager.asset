@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Candy
   - Spike
+  - Hog
+  - HiddenBackground
+  - Life
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Collectable
   - 
   - 
   - 
@@ -46,6 +49,9 @@ TagManager:
   - name: Esteiras
     uniqueID: 168869899
     locked: 0
+  - name: Collectable
+    uniqueID: 774313499
+    locked: 0
   - name: Terrain
     uniqueID: 1761493859
     locked: 0
@@ -54,4 +60,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2869991357
+    locked: 0
+  - name: UI
+    uniqueID: 2119708831
     locked: 0

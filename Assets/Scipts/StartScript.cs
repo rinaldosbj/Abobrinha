@@ -18,6 +18,7 @@ public class StartScript : MonoBehaviour
             StartGame();
             PlayerPrefs.SetInt("Score", 0);
             PlayerPrefs.SetInt("OldScore", 0);
+            PlayerPrefs.SetInt("Life", 3);
         }
         if (timer < timeInterval)
         { 

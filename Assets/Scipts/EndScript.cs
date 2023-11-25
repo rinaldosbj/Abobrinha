@@ -7,13 +7,20 @@ public class EndScript : MonoBehaviour
 {
     public void QuitGame()
     {
-        PlayerPrefs.SetInt("OldScore", 0);
+        ResetData();
         Application.Quit();
     }
     public void StartGame()
     {
+        ResetData();
+        SceneManager.LoadScene(1);
+    }
+
+    private void ResetData()
+    {
         PlayerPrefs.SetInt("Score", 0);
         PlayerPrefs.SetInt("OldScore", 0);
-        SceneManager.LoadScene(1);
+        PlayerPrefs.SetInt("Life", 3);
+        DontDestroy.dontDestroy.sceneList = new List<string>();
     }
 }
