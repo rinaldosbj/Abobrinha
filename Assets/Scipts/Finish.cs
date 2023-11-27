@@ -16,13 +16,19 @@ public class Finish : MonoBehaviour
             Invoke("CompleteLevel",timeUntilNextLevel);
             finishSound.Play();
             isLevelCompleted = true;
-            int score = PlayerPrefs.GetInt("Score");
-            PlayerPrefs.SetInt("OldScore", score);
         }
     }
 
     private void CompleteLevel() 
     {
+        foreach (string name in DontDestroy.dontDestroy.sceneList)
+        {
+            if (name != "BackgroundAudio")
+            {
+                Destroy(GameObject.Find(name));
+            }
+        }
+        DontDestroy.dontDestroy.sceneList = new List<string>{"BackgroundAudio"};
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

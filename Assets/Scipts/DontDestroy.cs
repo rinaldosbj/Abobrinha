@@ -21,15 +21,15 @@ public class DontDestroy : MonoBehaviour
 
         if (dontDestroy.sceneList.Count == 0)
         {
-            dontDestroy.sceneList.Add(SceneManager.GetActiveScene().name);
+            dontDestroy.sceneList.Add($"{gameObject.name}");
         }
-        else if (dontDestroy.sceneList.Contains(SceneManager.GetActiveScene().name))
+        else if (dontDestroy.sceneList.Contains($"{gameObject.name}"))
         {
             Destroy(gameObject);
         }
         else
         {
-            dontDestroy.sceneList.Add(SceneManager.GetActiveScene().name);
+            dontDestroy.sceneList.Add($"{gameObject.name}");
         }
 
     }

@@ -20,7 +20,7 @@ public class ItemColector : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Candy"))
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             score++;
             pickUpSound.Play();
             PlayerPrefs.SetInt("Score", score);
@@ -34,6 +34,14 @@ public class ItemColector : MonoBehaviour
             int lifes = PlayerPrefs.GetInt("Life");
             PlayerPrefs.SetInt("Life", lifes+1);;
             lifesText.text = ($"{lifes+1}x");
+        }
+
+        if (other.gameObject.CompareTag("DoubleJump"))
+        {
+            other.gameObject.SetActive(false);
+            pickUpSound.Play();
+            PlayerPrefs.SetInt("Jumps",2);
+            GameObject.Find("Player").GetComponent<PlayerMovement>().jumpQuantity = 2;
         }
     }
 }

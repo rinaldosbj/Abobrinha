@@ -9,6 +9,7 @@ TagManager:
   - Hog
   - HiddenBackground
   - Life
+  - DoubleJump
   layers:
   - Default
   - TransparentFX

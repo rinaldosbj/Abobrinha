@@ -19,8 +19,8 @@ public class EndScript : MonoBehaviour
     private void ResetData()
     {
         PlayerPrefs.SetInt("Score", 0);
-        PlayerPrefs.SetInt("OldScore", 0);
         PlayerPrefs.SetInt("Life", 3);
+        PlayerPrefs.SetInt("Jumps",1);
         DontDestroy.dontDestroy.sceneList = new List<string>();
     }
 }
