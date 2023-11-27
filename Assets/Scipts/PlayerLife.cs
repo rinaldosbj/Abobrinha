@@ -46,8 +46,6 @@ public class PlayerLife : MonoBehaviour
         deadSound.Play();
         animator.SetTrigger("death");
         rigidbody.bodyType = RigidbodyType2D.Static;
-        int oldScore = PlayerPrefs.GetInt("OldScore");
-        PlayerPrefs.SetInt("Score", oldScore);
         lifes = PlayerPrefs.GetInt("Life");
         PlayerPrefs.SetInt("Life", lifes-1);
     }

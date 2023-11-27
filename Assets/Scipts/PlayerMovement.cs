@@ -19,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     new private BoxCollider2D collider;
     private PlayerLife playerLife;
     public LayerMask jumpableGround;
-    public int extraJumpQuantity = 1;
-    public int jumpCount = 0; 
+    public int jumpQuantity;
+    private int jumpCount = 0; 
     private bool isDead = false;
     [SerializeField] private float horizontalHitBoxFixer = .05f; 
     public AudioSource jumpSound;
@@ -38,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         playerLife = GetComponent<PlayerLife>();
-        jumpCount = extraJumpQuantity;
+        jumpQuantity = PlayerPrefs.GetInt("Jumps");
+        jumpCount = jumpQuantity;
     }
 
     private void Update()
@@ -66,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
-            if (jumpCount > extraJumpQuantity-1)
+            if (jumpCount > jumpQuantity-1 || jumpQuantity == 1)
             {
                 jumpSound.Play();
             }
@@ -126,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (rigidbody.velocity.y > .1f)
         {
-            if (jumpCount > 0)
+            if (jumpCount > 0 || jumpQuantity == 1)
             {
                 state = MovementState.jumping;
             }
@@ -168,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
     {   
         Vector3 customSize = new Vector3(collider.bounds.size.x+horizontalHitBoxFixer,collider.bounds.size.y/2,collider.bounds.size.z);
         if (Physics2D.BoxCast(collider.bounds.center, customSize, 0f, Vector2.down, (collider.bounds.size.y/2)+.025f, jumpableGround)){
-            jumpCount = extraJumpQuantity;
+            jumpCount = jumpQuantity;
         }
     }
 }
