@@ -19,6 +19,7 @@ public class StartScript : MonoBehaviour
             PlayerPrefs.SetInt("Score", 0);
             PlayerPrefs.SetInt("Life", 3);
             PlayerPrefs.SetInt("Jumps",1);
+            PlayerPrefs.SetInt("hasPowerUp",0);
         }
         if (timer < timeInterval)
         { 

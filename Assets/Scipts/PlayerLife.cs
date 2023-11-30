@@ -35,14 +35,18 @@ public class PlayerLife : MonoBehaviour
         {
             Die();
         }
-        if (other.gameObject.CompareTag("Hog"))    
+        if (other.gameObject.CompareTag("Enemy"))    
         {
-            Die();
+            if (other.gameObject.name == "Hog")
+            {
+                Die();
+            }
         }
     }
 
     public void Die()
     {
+        GetComponent<PlayerMovement>().isDead = true;
         deadSound.Play();
         animator.SetTrigger("death");
         rigidbody.bodyType = RigidbodyType2D.Static;

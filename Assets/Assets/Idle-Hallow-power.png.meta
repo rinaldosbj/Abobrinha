@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 821fbb0d9667145d4af88a1c7b262259
+guid: 22d40df32e5ed43e28ff527800d4c093
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: doubleJump-Hallow_0
+      name: Idle-Hallow-power_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
-        height: 20
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0728722445b540b59b3170d7084d8c1
-      internalID: -1302178063
+      spriteID: a715a4c6814344401880eeba85cd5954
+      internalID: -731966561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doubleJump-Hallow_1
+      name: Idle-Hallow-power_1
       rect:
         serializedVersion: 2
         x: 16
         y: 0
         width: 16
-        height: 20
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,71 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fbdb5446677846559abb568edc15c3a
-      internalID: 1431435570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: doubleJump-Hallow_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dfca05d36febd46b5b9257ac81137f91
-      internalID: 1297752774
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: doubleJump-Hallow_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33216233d5f264c479a6bd09a61048c4
-      internalID: 1700869307
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: doubleJump-Hallow_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00d215ee1a0b443d397eafca2c84c89b
-      internalID: -524268060
+      spriteID: c2067c39e660741a8ad72f9a999e5dd7
+      internalID: 136434691
       vertices: []
       indices: 
       edges: []
@@ -238,11 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      doubleJump-Hallow_0: -1302178063
-      doubleJump-Hallow_1: 1431435570
-      doubleJump-Hallow_2: 1297752774
-      doubleJump-Hallow_3: 1700869307
-      doubleJump-Hallow_4: -524268060
+      Idle-Hallow-power_0: -731966561
+      Idle-Hallow-power_1: 136434691
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
