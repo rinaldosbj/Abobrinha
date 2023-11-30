@@ -36,6 +36,14 @@ public class ItemColector : MonoBehaviour
             lifesText.text = ($"{lifes+1}x");
         }
 
+        if (other.gameObject.CompareTag("Power"))
+        {
+            other.gameObject.SetActive(false);
+            pickUpSound.Play();
+            PlayerPrefs.SetInt("hasPowerUp",1);
+            GetComponentInParent<PlayerMovement>().hasPowerUp = true;
+        }
+
         if (other.gameObject.CompareTag("DoubleJump"))
         {
             other.gameObject.SetActive(false);

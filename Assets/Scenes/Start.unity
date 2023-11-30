@@ -731,7 +731,7 @@ SortingGroup:
   m_GameObject: {fileID: 1833925576}
   m_Enabled: 1
   m_SortingLayerID: -1811849661
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_SortAtRoot: 1
 --- !u!1 &1975083321
@@ -875,6 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb5a6f69ed7640e99f465751040cb2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneList: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

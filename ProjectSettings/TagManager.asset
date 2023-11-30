@@ -6,10 +6,11 @@ TagManager:
   tags:
   - Candy
   - Spike
-  - Hog
   - HiddenBackground
   - Life
   - DoubleJump
+  - Enemy
+  - Power
   layers:
   - Default
   - TransparentFX
