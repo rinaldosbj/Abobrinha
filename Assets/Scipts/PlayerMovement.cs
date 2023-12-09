@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isDead = false;
     [SerializeField] private float horizontalHitBoxFixer = .05f;
     private bool estaAbaixado = false;
+    private TrailRenderer trailRenderer;
 
     private void Start()
     {
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         jumpCount = jumpQuantity;
         power = GetComponentInChildren<PowerScript>();
         hasPowerUp = PlayerPrefs.GetInt("hasPowerUp") == 1;
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Update()
@@ -87,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 if (hasPowerUp)
                 {
                     charged = true;
+                    trailRenderer.emitting = true;
                 }
             }
             isInJumpInteval = false;
@@ -166,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
                             isInPowerInterval = false;
                             power.usedPowerUp = true;
                             charged = false;
+                            trailRenderer.emitting = false;
                         }
                     }
                 }
