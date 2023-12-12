@@ -10,6 +10,7 @@ public class Platform : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             collision.gameObject.transform.SetParent(transform);
+            GameObject.Find("Main Camera").GetComponent<CameraController>().isFixed = false;
         }
     }
 
@@ -18,6 +19,7 @@ public class Platform : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             collision.gameObject.transform.SetParent(null);
+            GameObject.Find("Main Camera").GetComponent<CameraController>().isFixed = true;
         }
     }
 }

@@ -38,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
     public bool isDead = false;
     [SerializeField] private float horizontalHitBoxFixer = .05f;
     private bool estaAbaixado = false;
+    private TrailRenderer trailRenderer;
+    private bool querVerBaixo = false;
+    private float querVerBaixoTimer = 0;
+    private float querVerBaixoTimeInterval = .7f;
 
     private void Start()
     {
@@ -50,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         jumpCount = jumpQuantity;
         power = GetComponentInChildren<PowerScript>();
         hasPowerUp = PlayerPrefs.GetInt("hasPowerUp") == 1;
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Update()
@@ -87,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 if (hasPowerUp)
                 {
                     charged = true;
+                    trailRenderer.emitting = true;
                 }
             }
             isInJumpInteval = false;
@@ -103,8 +109,6 @@ public class PlayerMovement : MonoBehaviour
                 givesJumpsBackIfGrounded();
             }
         }
-
-        updateAnimationState();
 
         if (!isInJumpInteval)
         {
@@ -131,6 +135,21 @@ public class PlayerMovement : MonoBehaviour
                 power.usedPowerUp = false;
             }
         }
+        if (querVerBaixo)
+        {
+            if (querVerBaixoTimer < querVerBaixoTimeInterval)
+            {
+                querVerBaixoTimer += Time.deltaTime;
+            }
+            else
+            {
+                GameObject.Find("Main Camera").GetComponent<CameraController>().isCrowded = true;
+            }
+        }
+    }
+
+    private void LateUpdate() {
+        updateAnimationState();
     }
 
     private void updateAnimationState()
@@ -159,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
                 if (rigidbody.velocity.y > -.01f && rigidbody.velocity.y < .01f)
                 {
                     animator.Play("Abaixado_down");
+                    querVerBaixo = true;
                     if (isInPowerInterval && charged)
                     {
                         if (charged)
@@ -166,6 +186,7 @@ public class PlayerMovement : MonoBehaviour
                             isInPowerInterval = false;
                             power.usedPowerUp = true;
                             charged = false;
+                            trailRenderer.emitting = false;
                         }
                     }
                 }
@@ -238,6 +259,13 @@ public class PlayerMovement : MonoBehaviour
                 {
                     animator.Play("Player_Idle");
                 }
+            }
+
+            if (!estaAbaixado || (estaAbaixado && !(rigidbody.velocity.y > -.01f && rigidbody.velocity.y < .01f)))
+            {
+                querVerBaixo = false;
+                querVerBaixoTimer = 0;
+                GameObject.Find("Main Camera").GetComponent<CameraController>().isCrowded = false;
             }
         }
     }

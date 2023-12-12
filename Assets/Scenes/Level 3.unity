@@ -1471,7 +1471,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 0efd02366f43a467796347fd24658f34, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 1
@@ -1509,8 +1509,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 681665794}
-  minYposition: 0
-  maxYposition: 15
+  minPosition: {x: -9, y: -1.5}
+  maxPosition: {x: 63, y: 16}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 1, z: 0}
+  isCrowded: 0
+  isFixed: 1
 --- !u!1001 &549124194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2954,6 +2958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5709563902194199604, guid: 720966d4622dc4989bcab2e131e22b90, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 0efd02366f43a467796347fd24658f34, type: 2}
     - target: {fileID: 5966633029084705642, guid: 720966d4622dc4989bcab2e131e22b90, type: 3}
       propertyPath: m_Name
       value: Canvas
