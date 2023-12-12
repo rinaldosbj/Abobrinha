@@ -1509,8 +1509,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 681665794}
-  minYposition: 0
-  maxYposition: 15
+  minPosition: {x: -9, y: -1.5}
+  maxPosition: {x: 63, y: 16}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 1, z: 0}
+  isCrowded: 0
+  isFixed: 1
 --- !u!1001 &549124194
 PrefabInstance:
   m_ObjectHideFlags: 0

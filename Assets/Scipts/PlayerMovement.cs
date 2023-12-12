@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float horizontalHitBoxFixer = .05f;
     private bool estaAbaixado = false;
     private TrailRenderer trailRenderer;
+    private bool querVerBaixo = false;
+    private float querVerBaixoTimer = 0;
+    private float querVerBaixoTimeInterval = .7f;
 
     private void Start()
     {
@@ -107,8 +110,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        updateAnimationState();
-
         if (!isInJumpInteval)
         {
             if (jumpTimer < jumpTimeInterval)
@@ -134,6 +135,21 @@ public class PlayerMovement : MonoBehaviour
                 power.usedPowerUp = false;
             }
         }
+        if (querVerBaixo)
+        {
+            if (querVerBaixoTimer < querVerBaixoTimeInterval)
+            {
+                querVerBaixoTimer += Time.deltaTime;
+            }
+            else
+            {
+                GameObject.Find("Main Camera").GetComponent<CameraController>().isCrowded = true;
+            }
+        }
+    }
+
+    private void LateUpdate() {
+        updateAnimationState();
     }
 
     private void updateAnimationState()
@@ -162,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
                 if (rigidbody.velocity.y > -.01f && rigidbody.velocity.y < .01f)
                 {
                     animator.Play("Abaixado_down");
+                    querVerBaixo = true;
                     if (isInPowerInterval && charged)
                     {
                         if (charged)
@@ -242,6 +259,13 @@ public class PlayerMovement : MonoBehaviour
                 {
                     animator.Play("Player_Idle");
                 }
+            }
+
+            if (!estaAbaixado || (estaAbaixado && !(rigidbody.velocity.y > -.01f && rigidbody.velocity.y < .01f)))
+            {
+                querVerBaixo = false;
+                querVerBaixoTimer = 0;
+                GameObject.Find("Main Camera").GetComponent<CameraController>().isCrowded = false;
             }
         }
     }
