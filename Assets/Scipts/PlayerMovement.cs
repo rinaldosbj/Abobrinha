@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravityScale = 3f;
 
     // Power
-    private float powerTimeInterval = 0.1f;
+    private float powerTimeInterval = 0.3f;
     private bool isInPowerInterval = true;
     private PowerScript power;
     private bool charged = false;
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     new private BoxCollider2D collider;
     private PlayerLife playerLife;
     public bool isDead = false;
-    [SerializeField] private float horizontalHitBoxFixer = .05f;
+    [SerializeField] private float horizontalHitBoxFixer = .3f;
     private bool estaAbaixado = false;
     private TrailRenderer trailRenderer;
     private bool querVerBaixo = false;
@@ -133,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
                 powerTimer = 0;
                 isInPowerInterval = true;
                 power.usedPowerUp = false;
+                power.stopAnimation();
             }
         }
         if (querVerBaixo)
@@ -187,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
                             power.usedPowerUp = true;
                             charged = false;
                             trailRenderer.emitting = false;
+                            power.startAnimation();
                         }
                     }
                 }

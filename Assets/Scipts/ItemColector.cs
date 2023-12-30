@@ -20,7 +20,7 @@ public class ItemColector : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Candy"))
         {
-            other.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Animator>().Play("CollectSpark");
             score++;
             pickUpSound.Play();
             PlayerPrefs.SetInt("Score", score);
@@ -46,7 +46,7 @@ public class ItemColector : MonoBehaviour
 
         if (other.gameObject.CompareTag("DoubleJump"))
         {
-            other.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Animator>().Play("DoubleJump_Destroy");
             pickUpSound.Play();
             PlayerPrefs.SetInt("Jumps",2);
             GameObject.Find("Player").GetComponent<PlayerMovement>().jumpQuantity = 2;
