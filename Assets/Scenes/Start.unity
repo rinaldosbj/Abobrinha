@@ -764,6 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f20805bada549549e976acc555ffce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyPreviousSceneList: []
 --- !u!114 &1917721112
 MonoBehaviour:
   m_ObjectHideFlags: 0

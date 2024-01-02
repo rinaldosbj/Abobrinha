@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private bool querVerBaixo = false;
     private float querVerBaixoTimer = 0;
     private float querVerBaixoTimeInterval = .7f;
+    public bool canMove = true;
     private PersistenceManager persistence = PersistenceManager.persistenceManager;
 
     private void Start()
@@ -60,57 +61,59 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Down"))
+        if (canMove)
         {
-            estaAbaixado = true;
-            rigidbody.gravityScale = gravityScale * 1.25f;
-            float directionX = Input.GetAxisRaw("Horizontal");
-            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+            if (Input.GetButton("Down"))
             {
-                rigidbody.velocity = new Vector2((playerSpeed * directionX) / 6, rigidbody.velocity.y);
-            }
-        }
-        else
-        {
-            rigidbody.gravityScale = gravityScale;
-            estaAbaixado = false;
-            float directionX = Input.GetAxisRaw("Horizontal");
-            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
-            {
-                rigidbody.velocity = new Vector2(playerSpeed * directionX, rigidbody.velocity.y);
-            }
-        }
-
-        if (Input.GetButtonDown("Jump") && jumpCount > 0)
-        {
-            if (jumpCount > jumpQuantity - 1 || jumpQuantity == 1)
-            {
-                jumpSound.Play();
+                estaAbaixado = true;
+                rigidbody.gravityScale = gravityScale * 1.25f;
+                float directionX = Input.GetAxisRaw("Horizontal");
+                if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+                {
+                    rigidbody.velocity = new Vector2((playerSpeed * directionX) / 6, rigidbody.velocity.y);
+                }
             }
             else
             {
-                doubleJumpSound.Play();
-                if (hasPowerUp)
+                rigidbody.gravityScale = gravityScale;
+                estaAbaixado = false;
+                float directionX = Input.GetAxisRaw("Horizontal");
+                if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
                 {
-                    charged = true;
-                    trailRenderer.emitting = true;
+                    rigidbody.velocity = new Vector2(playerSpeed * directionX, rigidbody.velocity.y);
                 }
             }
-            isInJumpInteval = false;
-            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
-            {
-                rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpHeight);
-            }
-            jumpCount -= 1;
-        }
-        else
-        {
-            if (isInJumpInteval)
-            {
-                givesJumpsBackIfGrounded();
-            }
-        }
 
+            if (Input.GetButtonDown("Jump") && jumpCount > 0)
+            {
+                if (jumpCount > jumpQuantity - 1 || jumpQuantity == 1)
+                {
+                    jumpSound.Play();
+                }
+                else
+                {
+                    doubleJumpSound.Play();
+                    if (hasPowerUp)
+                    {
+                        charged = true;
+                        trailRenderer.emitting = true;
+                    }
+                }
+                isInJumpInteval = false;
+                if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+                {
+                    rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpHeight);
+                }
+                jumpCount -= 1;
+            }
+            else
+            {
+                if (isInJumpInteval)
+                {
+                    givesJumpsBackIfGrounded();
+                }
+            }
+        }
         if (!isInJumpInteval)
         {
             if (jumpTimer < jumpTimeInterval)
@@ -150,7 +153,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void LateUpdate() {
+    private void LateUpdate()
+    {
         updateAnimationState();
     }
 
@@ -220,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    if(charged)
+                    if (charged)
                     {
                         animator.Play("Power_DoubleJump");
                     }
@@ -238,7 +242,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    animator.Play("Player_Fall");  
+                    animator.Play("Player_Fall");
                 }
             }
             else if (rigidbody.velocity.x > 0f || rigidbody.velocity.x < 0f)

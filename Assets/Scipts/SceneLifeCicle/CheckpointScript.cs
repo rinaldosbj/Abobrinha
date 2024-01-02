@@ -22,6 +22,7 @@ public class CheckpointScript : MonoBehaviour
             collider2D.enabled = false;
             animator.Play("GotFlag");
             gotFlagSound.Play();
+            PersistenceManager.persistenceManager.updatePreviousScore();
             PersistenceManager.persistenceManager.updateDontDestroyPrevious();
         }
     }
