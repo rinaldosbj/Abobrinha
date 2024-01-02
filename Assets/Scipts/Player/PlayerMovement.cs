@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private bool querVerBaixo = false;
     private float querVerBaixoTimer = 0;
     private float querVerBaixoTimeInterval = .7f;
+    private PersistenceManager persistence = PersistenceManager.persistenceManager;
 
     private void Start()
     {
@@ -50,10 +51,10 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         playerLife = GetComponent<PlayerLife>();
-        jumpQuantity = PlayerPrefs.GetInt("Jumps");
+        jumpQuantity = persistence.jumpQuantity();
         jumpCount = jumpQuantity;
         power = GetComponentInChildren<PowerScript>();
-        hasPowerUp = PlayerPrefs.GetInt("hasPowerUp") == 1;
+        hasPowerUp = persistence.hasPowerUp();
         trailRenderer = GetComponent<TrailRenderer>();
     }
 

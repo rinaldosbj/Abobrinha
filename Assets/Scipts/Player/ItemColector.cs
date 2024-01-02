@@ -5,35 +5,22 @@ using UnityEngine.UI;
 
 public class ItemColector : MonoBehaviour
 {
-    public  Text candyText;
-    public  Text lifesText;
     public AudioSource pickUpSound;
-    private int score;
-
-    private void Start() 
-    {
-        score = PlayerPrefs.GetInt("Score");
-        candyText.text = score.ToString();
-    }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.gameObject.CompareTag("Candy"))
         {
             other.gameObject.GetComponent<Animator>().Play("CollectSpark");
-            score++;
             pickUpSound.Play();
-            PlayerPrefs.SetInt("Score", score);
-            candyText.text = score.ToString();
+            PersistenceManager.persistenceManager.scoreUP();
         }
 
         if (other.gameObject.CompareTag("Life"))
         {
             other.gameObject.SetActive(false);
             pickUpSound.Play();
-            int lifes = PlayerPrefs.GetInt("Life");
-            PlayerPrefs.SetInt("Life", lifes+1);;
-            lifesText.text = ($"{lifes+1}x");
+            PersistenceManager.persistenceManager.lifeUP();
         }
 
         if (other.gameObject.CompareTag("Power"))

@@ -23,12 +23,12 @@ public class Finish : MonoBehaviour
     {
         foreach (string name in DontDestroy.dontDestroy.sceneList)
         {
-            if (name != "BackgroundAudio")
+            if (name != "Manager")
             {
                 Destroy(GameObject.Find(name));
             }
         }
-        DontDestroy.dontDestroy.sceneList = new List<string>{"BackgroundAudio"};
+        DontDestroy.dontDestroy.sceneList = new List<string>{"Manager"};
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

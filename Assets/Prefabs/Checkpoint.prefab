@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6722404886418944439}
   - component: {fileID: 242785414170632652}
   m_Layer: 0
-  m_Name: FinishLevel
+  m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,10 +139,11 @@ GameObject:
   - component: {fileID: 8022637204600088535}
   - component: {fileID: 8658490704598150606}
   - component: {fileID: 900741879228196463}
-  - component: {fileID: 3473893008440562396}
   - component: {fileID: 3405744940430437603}
+  - component: {fileID: 4937876802557236357}
+  - component: {fileID: 5986889251366188591}
   m_Layer: 0
-  m_Name: FinishLine
+  m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +253,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.8125}
+    oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 1.8125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -261,20 +262,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.8125}
   m_EdgeRadius: 0
---- !u!114 &3473893008440562396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8711301771345713706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ad77e91143e47f39543f810ba126ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeUntilNextLevel: 0.45
-  finishSound: {fileID: 242785414170632652}
 --- !u!95 &3405744940430437603
 Animator:
   serializedVersion: 5
@@ -296,3 +283,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4937876802557236357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711301771345713706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286c8fb242f6842e48b7eadb60448d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gotFlagSound: {fileID: 242785414170632652}
+--- !u!114 &5986889251366188591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711301771345713706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb5a6f69ed7640e99f465751040cb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneList: []

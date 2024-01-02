@@ -11,8 +11,6 @@ public class PlayerLife : MonoBehaviour
     private Animator animator;
     new private Rigidbody2D rigidbody;
     public AudioSource deadSound;
-    public  Text lifesText;
-    private int lifes;
 
     private float savedVelocity = 0;
 
@@ -20,8 +18,6 @@ public class PlayerLife : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
-        lifes = PlayerPrefs.GetInt("Life");
-        lifesText.text = ($"{lifes}x");
     }
 
     private void Update() 
@@ -50,13 +46,26 @@ public class PlayerLife : MonoBehaviour
         deadSound.Play();
         animator.SetTrigger("death");
         rigidbody.bodyType = RigidbodyType2D.Static;
-        lifes = PlayerPrefs.GetInt("Life");
-        PlayerPrefs.SetInt("Life", lifes-1);
+        PersistenceManager.persistenceManager.lifeDOWN();
+        PersistenceManager.persistenceManager.updateScore();
     }
 
     private void RestartLevel()
     {
-        if (lifes-1 == 0)
+        foreach (string name in DontDestroy.dontDestroy.sceneList)
+        {
+            if (!(name == "Manager" || name == "Checkpoint"))
+            {
+                Destroy(GameObject.Find(name));
+            }
+        }
+        DontDestroy.dontDestroy.sceneList = new List<string>();
+        foreach (string name in PersistenceManager.persistenceManager.dontDestroyPreviousSceneList)
+        {
+            DontDestroy.dontDestroy.sceneList.Add(name.ToString());
+        }
+
+        if (PersistenceManager.persistenceManager.lifes() == 0)
         {
             SceneManager.LoadScene("Game Over");
         }
