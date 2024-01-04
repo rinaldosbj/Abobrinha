@@ -13,7 +13,6 @@ public class PlayerLife : MonoBehaviour
     public AudioSource deadSound;
 
     private float savedVelocity = 0;
-    private PersistenceManager persistenceManager = PersistenceManager.shared;
 
     private void Start()
     {
@@ -47,26 +46,26 @@ public class PlayerLife : MonoBehaviour
         deadSound.Play();
         animator.SetTrigger("death");
         rigidbody.bodyType = RigidbodyType2D.Static;
-        persistenceManager.lifeDOWN();
-        persistenceManager.updateScore();
+        PersistenceManager.shared.lifeDOWN();
+        PersistenceManager.shared.updateScore();
     }
 
     private void RestartLevel()
     {
         foreach (string name in DontDestroy.shared.sceneList)
         {
-            if (!(name == "Manager" || name == "Checkpoint"))
+            if (!GameObject.Find(name).CompareTag("Undestroyable"))
             {
                 Destroy(GameObject.Find(name));
             }
         }
         DontDestroy.shared.sceneList = new List<string>();
-        foreach (string name in persistenceManager.dontDestroyPreviousSceneList)
+        foreach (string name in PersistenceManager.shared.dontDestroyPreviousSceneList)
         {
             DontDestroy.shared.sceneList.Add(name.ToString());
         }
 
-        if (persistenceManager.lifes() == 0)
+        if (PersistenceManager.shared.lifes() == 0)
         {
             SceneManager.LoadScene("Game Over");
         }

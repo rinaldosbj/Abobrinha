@@ -52,11 +52,16 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         playerLife = GetComponent<PlayerLife>();
+        power = GetComponentInChildren<PowerScript>();
+        trailRenderer = GetComponent<TrailRenderer>();
+        UpdatePlayer();
+    }
+
+    public void UpdatePlayer()
+    {
+        hasPowerUp = persistence.hasPowerUp();
         jumpQuantity = persistence.jumpQuantity();
         jumpCount = jumpQuantity;
-        power = GetComponentInChildren<PowerScript>();
-        hasPowerUp = persistence.hasPowerUp();
-        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Update()
@@ -113,43 +118,46 @@ public class PlayerMovement : MonoBehaviour
                     givesJumpsBackIfGrounded();
                 }
             }
+            if (!isInJumpInteval)
+            {
+                if (jumpTimer < jumpTimeInterval)
+                {
+                    jumpTimer += Time.deltaTime;
+                }
+                else
+                {
+                    jumpTimer = 0;
+                    isInJumpInteval = true;
+                }
+            }
+            if (!isInPowerInterval)
+            {
+                if (powerTimer < powerTimeInterval)
+                {
+                    powerTimer += Time.deltaTime;
+                }
+                else
+                {
+                    powerTimer = 0;
+                    isInPowerInterval = true;
+                    power.usedPowerUp = false;
+                    power.stopAnimation();
+                }
+            }
+            if (querVerBaixo)
+            {
+                if (querVerBaixoTimer < querVerBaixoTimeInterval)
+                {
+                    querVerBaixoTimer += Time.deltaTime;
+                }
+                else
+                {
+                    GameObject.Find("Main Camera").GetComponent<CameraController>().isCrowded = true;
+                }
+            }
         }
-        if (!isInJumpInteval)
-        {
-            if (jumpTimer < jumpTimeInterval)
-            {
-                jumpTimer += Time.deltaTime;
-            }
-            else
-            {
-                jumpTimer = 0;
-                isInJumpInteval = true;
-            }
-        }
-        if (!isInPowerInterval)
-        {
-            if (powerTimer < powerTimeInterval)
-            {
-                powerTimer += Time.deltaTime;
-            }
-            else
-            {
-                powerTimer = 0;
-                isInPowerInterval = true;
-                power.usedPowerUp = false;
-                power.stopAnimation();
-            }
-        }
-        if (querVerBaixo)
-        {
-            if (querVerBaixoTimer < querVerBaixoTimeInterval)
-            {
-                querVerBaixoTimer += Time.deltaTime;
-            }
-            else
-            {
-                GameObject.Find("Main Camera").GetComponent<CameraController>().isCrowded = true;
-            }
+        else {
+            rigidbody.velocity = new Vector2(0,rigidbody.velocity.y);
         }
     }
 

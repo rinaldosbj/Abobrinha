@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class PersistenceManager : MonoBehaviour
 {
@@ -26,7 +25,7 @@ public class PersistenceManager : MonoBehaviour
         dontDestroyPreviousSceneList = new List<string>();
         foreach (string name in DontDestroy.shared.sceneList)
         {
-            if (name == "Manager" || name == "Checkpoint" || !GameObject.Find(name).GetComponent<SpriteRenderer>().enabled)
+            if (GameObject.Find(name).CompareTag("Undestroyable") || !GameObject.Find(name).GetComponent<SpriteRenderer>().enabled)
             {
                 dontDestroyPreviousSceneList.Add(name.ToString());
                 Debug.Log($"updated previous -> {name}");

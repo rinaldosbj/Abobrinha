@@ -19,16 +19,23 @@ public class ItemColector : MonoBehaviour
 
         if (other.gameObject.CompareTag("Life"))
         {
-            other.gameObject.SetActive(false);
+            // TEMP
+            other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            //
             pickUpSound.Play();
             persistenceManager.lifeUP();
         }
 
         if (other.gameObject.CompareTag("Power"))
         {
-            other.gameObject.SetActive(false);
+            // TEMP
+            other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            //
             pickUpSound.Play();
             persistenceManager.gotPowerUp();
+            gameObject.GetComponent<PlayerMovement>().UpdatePlayer();
         }
 
         if (other.gameObject.CompareTag("DoubleJump"))
@@ -36,6 +43,7 @@ public class ItemColector : MonoBehaviour
             other.gameObject.GetComponent<Animator>().Play("DoubleJump_Destroy");
             pickUpSound.Play();
             persistenceManager.jumpUP();
+            gameObject.GetComponent<PlayerMovement>().UpdatePlayer();
         }
     }
 }

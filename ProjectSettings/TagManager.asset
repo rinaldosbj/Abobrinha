@@ -11,6 +11,7 @@ TagManager:
   - DoubleJump
   - Enemy
   - Power
+  - Undestroyable
   layers:
   - Default
   - TransparentFX
