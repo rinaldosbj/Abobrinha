@@ -7,29 +7,29 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
-    public static DontDestroy dontDestroy;
+    public static DontDestroy shared;
     public List<string> sceneList;
     private void Awake()
     {
         DontDestroyOnLoad(this);
 
-        if(dontDestroy == null)
+        if(shared == null)
         {
-            dontDestroy = this;
-            dontDestroy.sceneList = new List<string>();
+            shared = this;
+            shared.sceneList = new List<string>();
         }
 
-        if (dontDestroy.sceneList.Count == 0)
+        if (shared.sceneList.Count == 0)
         {
-            dontDestroy.sceneList.Add($"{gameObject.name}");
+            shared.sceneList.Add($"{gameObject.name}");
         }
-        else if (dontDestroy.sceneList.Contains($"{gameObject.name}"))
+        else if (shared.sceneList.Contains($"{gameObject.name}"))
         {
             Destroy(gameObject);
         }
         else
         {
-            dontDestroy.sceneList.Add($"{gameObject.name}");
+            shared.sceneList.Add($"{gameObject.name}");
         }
 
     }

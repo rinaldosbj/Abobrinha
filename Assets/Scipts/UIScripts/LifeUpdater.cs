@@ -13,6 +13,6 @@ public class LifeUpdater : MonoBehaviour
 
     void Update()
     {
-        text.text = PersistenceManager.persistenceManager.lifes().ToString();
+        text.text = PersistenceManager.shared.lifes().ToString();
     }
 }

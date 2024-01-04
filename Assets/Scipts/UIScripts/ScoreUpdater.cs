@@ -13,6 +13,6 @@ public class ScoreUpdater : MonoBehaviour
 
     void Update()
     {
-        text.text = PersistenceManager.persistenceManager.score().ToString();
+        text.text = PersistenceManager.shared.score().ToString();
     }
 }

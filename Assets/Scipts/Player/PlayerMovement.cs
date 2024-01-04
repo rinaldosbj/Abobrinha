@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private float querVerBaixoTimer = 0;
     private float querVerBaixoTimeInterval = .7f;
     public bool canMove = true;
-    private PersistenceManager persistence = PersistenceManager.persistenceManager;
+    private PersistenceManager persistence = PersistenceManager.shared;
 
     private void Start()
     {

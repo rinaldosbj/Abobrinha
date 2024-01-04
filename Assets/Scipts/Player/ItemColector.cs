@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ItemColector : MonoBehaviour
 {
     public AudioSource pickUpSound;
+    private PersistenceManager persistenceManager = PersistenceManager.shared;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
@@ -13,30 +14,28 @@ public class ItemColector : MonoBehaviour
         {
             other.gameObject.GetComponent<Animator>().Play("CollectSpark");
             pickUpSound.Play();
-            PersistenceManager.persistenceManager.scoreUP();
+            persistenceManager.scoreUP();
         }
 
         if (other.gameObject.CompareTag("Life"))
         {
             other.gameObject.SetActive(false);
             pickUpSound.Play();
-            PersistenceManager.persistenceManager.lifeUP();
+            persistenceManager.lifeUP();
         }
 
         if (other.gameObject.CompareTag("Power"))
         {
             other.gameObject.SetActive(false);
             pickUpSound.Play();
-            PlayerPrefs.SetInt("hasPowerUp",1);
-            GetComponentInParent<PlayerMovement>().hasPowerUp = true;
+            persistenceManager.gotPowerUp();
         }
 
         if (other.gameObject.CompareTag("DoubleJump"))
         {
             other.gameObject.GetComponent<Animator>().Play("DoubleJump_Destroy");
             pickUpSound.Play();
-            PlayerPrefs.SetInt("Jumps",2);
-            GameObject.Find("Player").GetComponent<PlayerMovement>().jumpQuantity = 2;
+            persistenceManager.jumpUP();
         }
     }
 }

@@ -28,14 +28,14 @@ public class Finish : MonoBehaviour
 
     private void CompleteLevel() 
     {
-        foreach (string name in DontDestroy.dontDestroy.sceneList)
+        foreach (string name in DontDestroy.shared.sceneList)
         {
             if (name != "Manager")
             {
                 Destroy(GameObject.Find(name));
             }
         }
-        DontDestroy.dontDestroy.sceneList = new List<string>{"Manager"};
+        DontDestroy.shared.sceneList = new List<string>{"Manager"};
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

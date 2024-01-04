@@ -7,21 +7,12 @@ public class EndScript : MonoBehaviour
 {
     public void QuitGame()
     {
-        ResetData();
+        PersistenceManager.shared.resetData();
         Application.Quit();
     }
     public void StartGame()
     {
-        ResetData();
+        PersistenceManager.shared.resetData(resetDontDestroy: true);
         SceneManager.LoadScene(1);
-    }
-
-    private void ResetData()
-    {
-        PlayerPrefs.SetInt("Score", 0);
-        PlayerPrefs.SetInt("Life", 3);
-        PlayerPrefs.SetInt("Jumps",1);
-        PlayerPrefs.SetInt("hasPowerUp",0);
-        DontDestroy.dontDestroy.sceneList = new List<string>();
     }
 }

@@ -5,13 +5,26 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class PersistenceManager : MonoBehaviour
 {
-    public static PersistenceManager persistenceManager;
+    public static PersistenceManager shared;
 
     public List<string> dontDestroyPreviousSceneList;
 
+    public void resetData(bool resetDontDestroy = false)
+    {
+        PlayerPrefs.SetInt("Score", 0);
+        PlayerPrefs.SetInt("Life", 3);
+        PlayerPrefs.SetInt("Jumps",1);
+        PlayerPrefs.SetInt("hasPowerUp",0);
+        PlayerPrefs.SetInt("PreviousScore",0);
+        if (resetDontDestroy)
+        {
+            DontDestroy.shared.sceneList = new List<string>();
+        }
+    }
+
     public void updateDontDestroyPrevious(){
         dontDestroyPreviousSceneList = new List<string>();
-        foreach (string name in DontDestroy.dontDestroy.sceneList)
+        foreach (string name in DontDestroy.shared.sceneList)
         {
             if (name == "Manager" || name == "Checkpoint" || !GameObject.Find(name).GetComponent<SpriteRenderer>().enabled)
             {
@@ -22,7 +35,7 @@ public class PersistenceManager : MonoBehaviour
     }
 
     private void Start() {
-        persistenceManager = this;
+        shared = this;
         dontDestroyPreviousSceneList = new List<string>{"Manager"};
     }
 
@@ -30,9 +43,17 @@ public class PersistenceManager : MonoBehaviour
     public int jumpQuantity(){
         return PlayerPrefs.GetInt("Jumps");
     }
+    public void jumpUP(){
+        PlayerPrefs.SetInt("Jumps",jumpQuantity() + 1);
+    }
     public bool hasPowerUp(){
         return PlayerPrefs.GetInt("hasPowerUp") == 1;
     }
+
+    public void gotPowerUp(){
+        PlayerPrefs.SetInt("hasPowerUp", 1);
+    }
+
 
     // Collectables
     public int lifes(){
@@ -67,4 +88,5 @@ public class PersistenceManager : MonoBehaviour
     public void updatePreviousScore(){
         PlayerPrefs.SetInt("PreviousScore", score());
     }
+
 }
