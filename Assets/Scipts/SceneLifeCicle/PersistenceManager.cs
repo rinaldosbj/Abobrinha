@@ -8,29 +8,50 @@ public class PersistenceManager : MonoBehaviour
 
     public List<string> dontDestroyPreviousSceneList;
 
-    public void resetData(bool resetDontDestroy = false)
+    public void ResetData(bool resetDontDestroy = false)
     {
         PlayerPrefs.SetInt("Score", 0);
         PlayerPrefs.SetInt("Life", 3);
         PlayerPrefs.SetInt("Jumps",1);
         PlayerPrefs.SetInt("hasPowerUp",0);
         PlayerPrefs.SetInt("PreviousScore",0);
+        PlayerPrefs.SetInt("Checkpointed",0);
         if (resetDontDestroy)
         {
-            DontDestroy.shared.sceneList = new List<string>();
+            DontDestroy.shared.sceneList = new List<string>{"Manager"};
         }
     }
 
-    public void updateDontDestroyPrevious(){
+    private void UpdateDontDestroyPrevious(){
         dontDestroyPreviousSceneList = new List<string>();
         foreach (string name in DontDestroy.shared.sceneList)
         {
-            if (GameObject.Find(name).CompareTag("Undestroyable") || !GameObject.Find(name).GetComponent<SpriteRenderer>().enabled)
+            if ((CheckIfMustPersist(name)) || !GameObject.Find(name).GetComponent<SpriteRenderer>().enabled)
             {
                 dontDestroyPreviousSceneList.Add(name.ToString());
                 Debug.Log($"updated previous -> {name}");
             }
         }
+    }
+
+    public void PrepareDontDestroyPreviousSceneList(){
+        dontDestroyPreviousSceneList = new List<string>();
+        foreach (string name in DontDestroy.shared.sceneList)
+        {
+            if (CheckIfMustPersist(name))
+            {
+                dontDestroyPreviousSceneList.Add(name.ToString());
+                Debug.Log($"updated previous -> {name}");
+            }
+        }
+    }
+
+    public bool CheckIfMustPersist(string name){
+        GameObject gameObjectFromName = GameObject.Find(name);
+        if (gameObjectFromName == null){
+            return false;
+        }
+        return gameObjectFromName.CompareTag("Undestroyable") || gameObjectFromName.CompareTag("Life") || gameObjectFromName.CompareTag("Power") || gameObjectFromName.CompareTag("DoubleJump");
     }
 
     private void Start() {
@@ -42,14 +63,14 @@ public class PersistenceManager : MonoBehaviour
     public int jumpQuantity(){
         return PlayerPrefs.GetInt("Jumps");
     }
-    public void jumpUP(){
+    public void JumpUP(){
         PlayerPrefs.SetInt("Jumps",jumpQuantity() + 1);
     }
     public bool hasPowerUp(){
         return PlayerPrefs.GetInt("hasPowerUp") == 1;
     }
 
-    public void gotPowerUp(){
+    public void GotPowerUp(){
         PlayerPrefs.SetInt("hasPowerUp", 1);
     }
 
@@ -59,15 +80,15 @@ public class PersistenceManager : MonoBehaviour
         return PlayerPrefs.GetInt("Life");
     }
 
-    public void lifeUP(){
+    public void LifeUP(){
         PlayerPrefs.SetInt("Life", lifes()+1);
     }
     
-    public void lifeDOWN(){
+    public void LifeDOWN(){
         PlayerPrefs.SetInt("Life", lifes()-1);
     }
 
-    public void updateScore(){
+    public void UpdateScore(){
         PlayerPrefs.SetInt("Score", previousScore());
     }
 
@@ -75,7 +96,7 @@ public class PersistenceManager : MonoBehaviour
         return PlayerPrefs.GetInt("Score");
     }
 
-    public void scoreUP(){
+    public void ScoreUP(){
         PlayerPrefs.SetInt("Score", score()+1);
     }
 
@@ -84,8 +105,29 @@ public class PersistenceManager : MonoBehaviour
         return PlayerPrefs.GetInt("PreviousScore");
     }
 
-    public void updatePreviousScore(){
+    private void UpdatePreviousScore(){
         PlayerPrefs.SetInt("PreviousScore", score());
     }
 
+    public bool willSpawnOnCheckpoint(){
+        return PlayerPrefs.GetInt("Checkpointed") == 1;
+    }
+
+    public Vector2 spawnpoint(){
+        return new Vector2(PlayerPrefs.GetFloat("SpawnpointX"),PlayerPrefs.GetFloat("SpawnpointY"));
+    }
+
+    public void RestartToNextLevel(){
+        DontDestroy.shared.sceneList = new List<string>{"Manager"};
+        UpdateDontDestroyPrevious();
+        PlayerPrefs.SetInt("Checkpointed",0);
+    }
+
+    public void Checkpointed(Vector2 spawnpoint){
+        PlayerPrefs.SetInt("Checkpointed", 1);
+        PlayerPrefs.SetFloat("SpawnpointX", spawnpoint.x);
+        PlayerPrefs.SetFloat("SpawnpointY", spawnpoint.y);
+        UpdatePreviousScore();
+        UpdateDontDestroyPrevious();
+    }
 }

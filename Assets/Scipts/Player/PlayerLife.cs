@@ -46,15 +46,15 @@ public class PlayerLife : MonoBehaviour
         deadSound.Play();
         animator.SetTrigger("death");
         rigidbody.bodyType = RigidbodyType2D.Static;
-        PersistenceManager.shared.lifeDOWN();
-        PersistenceManager.shared.updateScore();
+        PersistenceManager.shared.LifeDOWN();
+        PersistenceManager.shared.UpdateScore();
     }
 
     private void RestartLevel()
     {
         foreach (string name in DontDestroy.shared.sceneList)
         {
-            if (!GameObject.Find(name).CompareTag("Undestroyable"))
+            if (!(GameObject.Find(name).CompareTag("Undestroyable") || GameObject.Find(name).CompareTag("Life")))
             {
                 Destroy(GameObject.Find(name));
             }

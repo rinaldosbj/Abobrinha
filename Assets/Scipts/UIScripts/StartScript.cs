@@ -16,7 +16,7 @@ public class StartScript : MonoBehaviour
         if (Input.anyKeyDown)
         {
             StartGame();
-            PersistenceManager.shared.resetData();
+            PersistenceManager.shared.ResetData();
         }
         if (timer < timeInterval)
         { 

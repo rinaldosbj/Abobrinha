@@ -7,12 +7,12 @@ public class EndScript : MonoBehaviour
 {
     public void QuitGame()
     {
-        PersistenceManager.shared.resetData();
+        PersistenceManager.shared.ResetData();
         Application.Quit();
     }
     public void StartGame()
     {
-        PersistenceManager.shared.resetData(resetDontDestroy: true);
+        PersistenceManager.shared.ResetData(resetDontDestroy: true);
         SceneManager.LoadScene(1);
     }
 }

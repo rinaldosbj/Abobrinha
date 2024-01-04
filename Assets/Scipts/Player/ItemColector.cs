@@ -8,13 +8,17 @@ public class ItemColector : MonoBehaviour
     public AudioSource pickUpSound;
     private PersistenceManager persistenceManager = PersistenceManager.shared;
 
+    private void Start() {
+        persistenceManager.PrepareDontDestroyPreviousSceneList();
+    }
+
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.gameObject.CompareTag("Candy"))
         {
             other.gameObject.GetComponent<Animator>().Play("CollectSpark");
             pickUpSound.Play();
-            persistenceManager.scoreUP();
+            persistenceManager.ScoreUP();
         }
 
         if (other.gameObject.CompareTag("Life"))
@@ -24,7 +28,7 @@ public class ItemColector : MonoBehaviour
             other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             //
             pickUpSound.Play();
-            persistenceManager.lifeUP();
+            persistenceManager.LifeUP();
         }
 
         if (other.gameObject.CompareTag("Power"))
@@ -34,7 +38,7 @@ public class ItemColector : MonoBehaviour
             other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             //
             pickUpSound.Play();
-            persistenceManager.gotPowerUp();
+            persistenceManager.GotPowerUp();
             gameObject.GetComponent<PlayerMovement>().UpdatePlayer();
         }
 
@@ -42,7 +46,7 @@ public class ItemColector : MonoBehaviour
         {
             other.gameObject.GetComponent<Animator>().Play("DoubleJump_Destroy");
             pickUpSound.Play();
-            persistenceManager.jumpUP();
+            persistenceManager.JumpUP();
             gameObject.GetComponent<PlayerMovement>().UpdatePlayer();
         }
     }

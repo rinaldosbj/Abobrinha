@@ -55,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
         power = GetComponentInChildren<PowerScript>();
         trailRenderer = GetComponent<TrailRenderer>();
         UpdatePlayer();
+        if (persistence.willSpawnOnCheckpoint()){
+            transform.position = persistence.spawnpoint();
+        }
     }
 
     public void UpdatePlayer()

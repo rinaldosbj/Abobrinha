@@ -35,7 +35,7 @@ public class Finish : MonoBehaviour
                 Destroy(GameObject.Find(name));
             }
         }
-        DontDestroy.shared.sceneList = new List<string>{"Manager"};
+        PersistenceManager.shared.RestartToNextLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

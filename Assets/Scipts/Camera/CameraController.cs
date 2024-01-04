@@ -12,6 +12,12 @@ public class CameraController : MonoBehaviour
     private Vector3 velocity = Vector3.one;
     public bool isFixed = true;
 
+    private void Start() {
+        if (PersistenceManager.shared.willSpawnOnCheckpoint()){
+            transform.position = new Vector3(PersistenceManager.shared.spawnpoint().x,PersistenceManager.shared.spawnpoint().y,transform.position.z) + offset;
+        }
+    }
+
     private Vector3 getSmoothPosition()
     {
         float positionY = player.position.y;
