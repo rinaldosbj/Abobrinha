@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a000b18ef1a0248328579a67971f6b75
+guid: b05adfda215f945f1b1b1a814f80c263
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flag-Hallow_4
+      name: Flag-Hallow-gotten_0
       rect:
         serializedVersion: 2
         x: 16
@@ -131,20 +131,20 @@ TextureImporter:
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4f0083f9ab3f4e5ea7f1a45e4d78d7a
-      internalID: -1243187811
+      spriteID: db9b47a01b5914762a26e39c63c430ea
+      internalID: -1870037484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag-Hallow_5
+      name: Flag-Hallow-gotten_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,20 +152,20 @@ TextureImporter:
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccbbb6dc923234e0bad8126ffae7bf65
-      internalID: -2023338819
+      spriteID: 477944231c225490a9236226564518c2
+      internalID: 1024951386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag-Hallow_6
+      name: Flag-Hallow-gotten_2
       rect:
         serializedVersion: 2
         x: 48
@@ -173,20 +173,20 @@ TextureImporter:
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79b7e23e58d4047f3ad4275444a3481e
-      internalID: -4224203
+      spriteID: a2a61b82f2ccf40168c8afe24ecaf40f
+      internalID: 1379181191
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag-Hallow_7
+      name: Flag-Hallow-gotten_3
       rect:
         serializedVersion: 2
         x: 64
@@ -194,14 +194,119 @@ TextureImporter:
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02be2ef72919040e18e0457d62269b5a
-      internalID: 952559401
+      spriteID: 0d67d9d10655c4901b548a6738c147a9
+      internalID: 1383011470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flag-Hallow-gotten_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385e7dbc972184b3fb5db23ee6b19bd7
+      internalID: 585887435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flag-Hallow-gotten_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e41623d3507d44d03a321d59486257fd
+      internalID: 55101024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flag-Hallow-gotten_6
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 537ed9359c9554753b7ad127ebc529f3
+      internalID: 1199510801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flag-Hallow-gotten_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 616212d3ed25b4ed69a39599fcec9c22
+      internalID: 1206101137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flag-Hallow-gotten_8
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 864993ea9713b47fca9cdc3c7e330745
+      internalID: -1861584774
       vertices: []
       indices: 
       edges: []
@@ -217,14 +322,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flag-Hallow_0: 1076066475
-      Flag-Hallow_1: 367789125
-      Flag-Hallow_2: 449671496
-      Flag-Hallow_3: -379086342
-      Flag-Hallow_4: -1243187811
-      Flag-Hallow_5: -2023338819
-      Flag-Hallow_6: -4224203
-      Flag-Hallow_7: 952559401
+      Flag-Hallow-gotten_0: -1870037484
+      Flag-Hallow-gotten_1: 1024951386
+      Flag-Hallow-gotten_2: 1379181191
+      Flag-Hallow-gotten_3: 1383011470
+      Flag-Hallow-gotten_4: 585887435
+      Flag-Hallow-gotten_5: 55101024
+      Flag-Hallow-gotten_6: 1199510801
+      Flag-Hallow-gotten_7: 1206101137
+      Flag-Hallow-gotten_8: -1861584774
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

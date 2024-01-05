@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5549955065438391968}
   - component: {fileID: 4838523697816461818}
   - component: {fileID: 7171577450252670218}
+  - component: {fileID: 2438241049531181628}
   m_Layer: 7
   m_Name: Vidas
   m_TagString: Life
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 774313499
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbedc908dde77463da9b8eb9225b2078, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2438241049531181628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8273807853947951493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb5a6f69ed7640e99f465751040cb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneList: []

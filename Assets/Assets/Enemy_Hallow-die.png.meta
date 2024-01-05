@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a000b18ef1a0248328579a67971f6b75
+guid: 4ea5bcda837e94a659865fef5665cc00
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -123,85 +123,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flag-Hallow_4
+      name: Enemy_Hallow-die_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 32
+        x: 0
+        y: 0
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4f0083f9ab3f4e5ea7f1a45e4d78d7a
-      internalID: -1243187811
+      spriteID: 7f3946b2c5f46410180e8844450ca003
+      internalID: 733115190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag-Hallow_5
+      name: Enemy_Hallow-die_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
-        width: 16
-        height: 32
+        y: 0
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccbbb6dc923234e0bad8126ffae7bf65
-      internalID: -2023338819
+      spriteID: d5a8f1c1407154a0ebc4641caf4de7ae
+      internalID: 1876797313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag-Hallow_6
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 16
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 79b7e23e58d4047f3ad4275444a3481e
-      internalID: -4224203
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flag-Hallow_7
+      name: Enemy_Hallow-die_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 16
-        width: 16
-        height: 32
+        y: 0
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02be2ef72919040e18e0457d62269b5a
-      internalID: 952559401
+      spriteID: b8061e864eb6847e59d0f3a3335cb0ba
+      internalID: 1893084161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Hallow-die_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 323448bc5e14a48f8aedb2b90dc23a68
+      internalID: -882267206
       vertices: []
       indices: 
       edges: []
@@ -217,14 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flag-Hallow_0: 1076066475
-      Flag-Hallow_1: 367789125
-      Flag-Hallow_2: 449671496
-      Flag-Hallow_3: -379086342
-      Flag-Hallow_4: -1243187811
-      Flag-Hallow_5: -2023338819
-      Flag-Hallow_6: -4224203
-      Flag-Hallow_7: 952559401
+      Enemy_Hallow-die_0: 733115190
+      Enemy_Hallow-die_1: 1876797313
+      Enemy_Hallow-die_2: 1893084161
+      Enemy_Hallow-die_3: -882267206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

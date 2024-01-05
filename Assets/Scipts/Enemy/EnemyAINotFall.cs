@@ -13,7 +13,7 @@ public class EnemyAINotFall : MonoBehaviour
     public float velocity = 0.5f;
     new private Rigidbody2D rigidbody;
     private SpriteRenderer spriteRenderer;
-
+    public bool isTwisted = false;
     private bool canChangeDirection = true;
 
     private void Awake() 
@@ -30,6 +30,12 @@ public class EnemyAINotFall : MonoBehaviour
             bool rightIsOnTheGround = Physics2D.BoxCast(collider2D2.bounds.center, collider2D2.bounds.size, 0f, Vector2.down, 0f, ground);
             bool leftIsOnTheGround = Physics2D.BoxCast(collider2D1.bounds.center, collider2D1.bounds.size, 0f, Vector2.down, 0f, ground);
             
+            if (isTwisted)
+            {
+                leftIsOnTheGround = Physics2D.BoxCast(collider2D2.bounds.center, collider2D2.bounds.size, 0f, Vector2.down, 0f, ground);
+                rightIsOnTheGround = Physics2D.BoxCast(collider2D1.bounds.center, collider2D1.bounds.size, 0f, Vector2.down, 0f, ground);
+            }
+
             if( (rightIsOnTheGround && leftIsOnTheGround ) || (!rightIsOnTheGround && !leftIsOnTheGround))
             {
                 // Do nothing

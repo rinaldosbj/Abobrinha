@@ -211,6 +211,7 @@ MonoBehaviour:
   playerSpeed: 8
   isDead: 0
   horizontalHitBoxFixer: -0.5
+  canMove: 1
 --- !u!114 &5869791780209576846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,8 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50d1cb6e97034479a90808607d9ad9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  candyText: {fileID: 0}
-  lifesText: {fileID: 0}
   pickUpSound: {fileID: 2886238470741360225}
 --- !u!114 &849534565214356949
 MonoBehaviour:
@@ -239,7 +238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadSound: {fileID: 72030100146121000}
-  lifesText: {fileID: 0}
 --- !u!96 &2879865349504706068
 TrailRenderer:
   serializedVersion: 3
@@ -784,7 +782,7 @@ Transform:
   m_GameObject: {fileID: 7789483421520351957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.028, z: 0}
+  m_LocalPosition: {x: 0, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -822,7 +820,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0053016543, y: -0.37111592}
+  m_Offset: {x: -0.0053016543, y: -0.43957865}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -833,7 +831,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9861082, y: 0.5334542}
+  m_Size: {x: 1.9861082, y: 0.67037964}
   m_EdgeRadius: 0
 --- !u!114 &3859418491997992373
 MonoBehaviour:
@@ -946,7 +944,7 @@ Transform:
   m_GameObject: {fileID: 8568414160583543768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2899514, y: 4.96755, z: -2.140379}
+  m_LocalPosition: {x: 0.01, y: -0.13, z: -2.140379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

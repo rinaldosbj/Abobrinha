@@ -16,10 +16,7 @@ public class StartScript : MonoBehaviour
         if (Input.anyKeyDown)
         {
             StartGame();
-            PlayerPrefs.SetInt("Score", 0);
-            PlayerPrefs.SetInt("Life", 3);
-            PlayerPrefs.SetInt("Jumps",1);
-            PlayerPrefs.SetInt("hasPowerUp",0);
+            PersistenceManager.shared.ResetData();
         }
         if (timer < timeInterval)
         { 

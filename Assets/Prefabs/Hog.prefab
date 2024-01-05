@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 20
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -164,8 +164,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.28672218, y: 0.2078619}
       - {x: -0.5365453, y: 0.0032949448}
-      - {x: -0.65772057, y: -0.4707508}
-      - {x: 0.6495404, y: -0.46657085}
+      - {x: -0.6435509, y: -0.27591643}
+      - {x: -0.057363402, y: -0.46883097}
+      - {x: 0.6176572, y: -0.29299125}
       - {x: 0.5709028, y: -0.024507523}
       - {x: 0.5281887, y: 0.05955887}
       - {x: 0.31926584, y: 0.107933044}
@@ -279,6 +280,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   velocity: 2
+  isTwisted: 0
 --- !u!114 &1556879436401208742
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     private bool querVerBaixo = false;
     private float querVerBaixoTimer = 0;
     private float querVerBaixoTimeInterval = .7f;
+    public bool canMove = true;
+    private PersistenceManager persistence = PersistenceManager.shared;
 
     private void Start()
     {
@@ -50,106 +52,120 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         playerLife = GetComponent<PlayerLife>();
-        jumpQuantity = PlayerPrefs.GetInt("Jumps");
-        jumpCount = jumpQuantity;
         power = GetComponentInChildren<PowerScript>();
-        hasPowerUp = PlayerPrefs.GetInt("hasPowerUp") == 1;
         trailRenderer = GetComponent<TrailRenderer>();
+        UpdatePlayer();
+        if (persistence.willSpawnOnCheckpoint()){
+            transform.position = persistence.spawnpoint();
+        }
+    }
+
+    public void UpdatePlayer()
+    {
+        hasPowerUp = persistence.hasPowerUp();
+        jumpQuantity = persistence.jumpQuantity();
+        jumpCount = jumpQuantity;
     }
 
     private void Update()
     {
-        if (Input.GetButton("Down"))
+        if (canMove)
         {
-            estaAbaixado = true;
-            rigidbody.gravityScale = gravityScale * 1.25f;
-            float directionX = Input.GetAxisRaw("Horizontal");
-            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+            if (Input.GetButton("Down"))
             {
-                rigidbody.velocity = new Vector2((playerSpeed * directionX) / 6, rigidbody.velocity.y);
-            }
-        }
-        else
-        {
-            rigidbody.gravityScale = gravityScale;
-            estaAbaixado = false;
-            float directionX = Input.GetAxisRaw("Horizontal");
-            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
-            {
-                rigidbody.velocity = new Vector2(playerSpeed * directionX, rigidbody.velocity.y);
-            }
-        }
-
-        if (Input.GetButtonDown("Jump") && jumpCount > 0)
-        {
-            if (jumpCount > jumpQuantity - 1 || jumpQuantity == 1)
-            {
-                jumpSound.Play();
-            }
-            else
-            {
-                doubleJumpSound.Play();
-                if (hasPowerUp)
+                estaAbaixado = true;
+                rigidbody.gravityScale = gravityScale * 1.25f;
+                float directionX = Input.GetAxisRaw("Horizontal");
+                if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
                 {
-                    charged = true;
-                    trailRenderer.emitting = true;
+                    rigidbody.velocity = new Vector2((playerSpeed * directionX) / 6, rigidbody.velocity.y);
                 }
             }
-            isInJumpInteval = false;
-            if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+            else
             {
-                rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpHeight);
+                rigidbody.gravityScale = gravityScale;
+                estaAbaixado = false;
+                float directionX = Input.GetAxisRaw("Horizontal");
+                if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+                {
+                    rigidbody.velocity = new Vector2(playerSpeed * directionX, rigidbody.velocity.y);
+                }
             }
-            jumpCount -= 1;
-        }
-        else
-        {
-            if (isInJumpInteval)
-            {
-                givesJumpsBackIfGrounded();
-            }
-        }
 
-        if (!isInJumpInteval)
-        {
-            if (jumpTimer < jumpTimeInterval)
+            if (Input.GetButtonDown("Jump") && jumpCount > 0)
             {
-                jumpTimer += Time.deltaTime;
+                if (jumpCount > jumpQuantity - 1 || jumpQuantity == 1)
+                {
+                    jumpSound.Play();
+                }
+                else
+                {
+                    doubleJumpSound.Play();
+                    if (hasPowerUp)
+                    {
+                        charged = true;
+                        trailRenderer.emitting = true;
+                    }
+                }
+                isInJumpInteval = false;
+                if (rigidbody.bodyType == RigidbodyType2D.Dynamic)
+                {
+                    rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpHeight);
+                }
+                jumpCount -= 1;
             }
             else
             {
-                jumpTimer = 0;
-                isInJumpInteval = true;
+                if (isInJumpInteval)
+                {
+                    givesJumpsBackIfGrounded();
+                }
+            }
+            if (!isInJumpInteval)
+            {
+                if (jumpTimer < jumpTimeInterval)
+                {
+                    jumpTimer += Time.deltaTime;
+                }
+                else
+                {
+                    jumpTimer = 0;
+                    isInJumpInteval = true;
+                }
+            }
+            if (!isInPowerInterval)
+            {
+                if (powerTimer < powerTimeInterval)
+                {
+                    powerTimer += Time.deltaTime;
+                }
+                else
+                {
+                    powerTimer = 0;
+                    isInPowerInterval = true;
+                    power.usedPowerUp = false;
+                    power.stopAnimation();
+                }
+            }
+            if (querVerBaixo)
+            {
+                if (querVerBaixoTimer < querVerBaixoTimeInterval)
+                {
+                    querVerBaixoTimer += Time.deltaTime;
+                }
+                else
+                {
+                    GameObject.Find("Main Camera").GetComponent<CameraController>().isCrowded = true;
+                }
             }
         }
-        if (!isInPowerInterval)
-        {
-            if (powerTimer < powerTimeInterval)
-            {
-                powerTimer += Time.deltaTime;
-            }
-            else
-            {
-                powerTimer = 0;
-                isInPowerInterval = true;
-                power.usedPowerUp = false;
-                power.stopAnimation();
-            }
-        }
-        if (querVerBaixo)
-        {
-            if (querVerBaixoTimer < querVerBaixoTimeInterval)
-            {
-                querVerBaixoTimer += Time.deltaTime;
-            }
-            else
-            {
-                GameObject.Find("Main Camera").GetComponent<CameraController>().isCrowded = true;
-            }
+        else {
+            rigidbody.velocity = new Vector2(0,rigidbody.velocity.y);
         }
     }
 
-    private void LateUpdate() {
+    private void LateUpdate()
+    {
         updateAnimationState();
     }
 
@@ -219,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    if(charged)
+                    if (charged)
                     {
                         animator.Play("Power_DoubleJump");
                     }
@@ -237,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    animator.Play("Player_Fall");  
+                    animator.Play("Player_Fall");
                 }
             }
             else if (rigidbody.velocity.x > 0f || rigidbody.velocity.x < 0f)
