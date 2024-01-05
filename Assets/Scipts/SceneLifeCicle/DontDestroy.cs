@@ -25,6 +25,7 @@ public class DontDestroy : MonoBehaviour
         }
         else if (shared.sceneList.Contains($"{gameObject.name}"))
         {
+            Debug.Log($"Destroyed Dontdestroy -> {gameObject.name}");
             Destroy(gameObject);
         }
         else

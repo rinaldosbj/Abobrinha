@@ -20,18 +20,18 @@ public class PlayerLife : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update() 
+    private void Update()
     {
         savedVelocity = rigidbody.velocity.y;
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Spike") && savedVelocity < -.1f)    
+        if (other.gameObject.CompareTag("Spike") && savedVelocity < -.1f)
         {
             Die();
         }
-        if (other.gameObject.CompareTag("Enemy"))    
+        if (other.gameObject.CompareTag("Enemy"))
         {
             if (other.gameObject.name == "Hog")
             {
@@ -59,18 +59,26 @@ public class PlayerLife : MonoBehaviour
         else
         {
             foreach (string name in DontDestroy.shared.sceneList)
-        {
-            if (!(GameObject.Find(name).CompareTag("Undestroyable") || GameObject.Find(name).CompareTag("Life")))
             {
-                Destroy(GameObject.Find(name));
+                if (!CheckIfMustPersist(name))
+                {
+                    Destroy(GameObject.Find(name));
+                }
             }
-        }
-        DontDestroy.shared.sceneList = new List<string>();
-        foreach (string name in PersistenceManager.shared.dontDestroyPreviousSceneList)
-        {
-            DontDestroy.shared.sceneList.Add(name.ToString());
-        }
+            DontDestroy.shared.sceneList = new List<string>();
+            foreach (string name in PersistenceManager.shared.dontDestroyPreviousSceneList)
+            {
+                DontDestroy.shared.sceneList.Add(name.ToString());
+            }
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    public bool CheckIfMustPersist(string name){
+        GameObject gameObjectFromName = GameObject.Find(name);
+        if (gameObjectFromName == null){
+            return false;
+        }
+        return gameObjectFromName.CompareTag("Undestroyable") || gameObjectFromName.CompareTag("Life") || gameObjectFromName.CompareTag("Power") || gameObjectFromName.CompareTag("DoubleJump");
     }
 }

@@ -26,7 +26,7 @@ public class PersistenceManager : MonoBehaviour
         dontDestroyPreviousSceneList = new List<string>();
         foreach (string name in DontDestroy.shared.sceneList)
         {
-            if ((CheckIfMustPersist(name)) || !GameObject.Find(name).GetComponent<SpriteRenderer>().enabled)
+            if (CheckIfMustPersist(name) || !GameObject.Find(name).GetComponent<SpriteRenderer>().enabled)
             {
                 dontDestroyPreviousSceneList.Add(name.ToString());
                 Debug.Log($"updated previous -> {name}");
@@ -120,6 +120,7 @@ public class PersistenceManager : MonoBehaviour
     public void RestartToNextLevel(){
         DontDestroy.shared.sceneList = new List<string>{"Manager"};
         UpdateDontDestroyPrevious();
+        UpdatePreviousScore();
         PlayerPrefs.SetInt("Checkpointed",0);
     }
 

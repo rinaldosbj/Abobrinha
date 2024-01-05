@@ -32,6 +32,7 @@ public class Finish : MonoBehaviour
         {
             if (name != "Manager")
             {
+                Debug.Log($"Destroyed CompleteLevel -> {name}");
                 Destroy(GameObject.Find(name));
             }
         }
