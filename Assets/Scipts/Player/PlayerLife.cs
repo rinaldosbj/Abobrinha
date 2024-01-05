@@ -52,7 +52,13 @@ public class PlayerLife : MonoBehaviour
 
     private void RestartLevel()
     {
-        foreach (string name in DontDestroy.shared.sceneList)
+        if (PersistenceManager.shared.lifes() == 0)
+        {
+            SceneManager.LoadScene("Game Over");
+        }
+        else
+        {
+            foreach (string name in DontDestroy.shared.sceneList)
         {
             if (!(GameObject.Find(name).CompareTag("Undestroyable") || GameObject.Find(name).CompareTag("Life")))
             {
@@ -64,13 +70,6 @@ public class PlayerLife : MonoBehaviour
         {
             DontDestroy.shared.sceneList.Add(name.ToString());
         }
-
-        if (PersistenceManager.shared.lifes() == 0)
-        {
-            SceneManager.LoadScene("Game Over");
-        }
-        else
-        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
